@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Texto</title>
+    <link rel="icon" type="imagen/x-icon" href="assets/candado.ico">
+    <link rel="stylesheet" href="styles/styles.css">
+    
+</head>
+<body>
+    <header>
+        <!-- Logo -->
+        <a href="#" rel="">
+            <img src="assets/Logo.png" alt="Logo alura" class="logo">
+        </a>
+    </header>
+     <main>     
+        <section class="encriptar">
+            <textarea  class="textarea" id="texto" name="texto"  cols="30" rows="10" placeholder="Ingrese el texto aqui"></textarea>                 
+            <div class="info_text">
+                    <p class="texto-aviso"> &#9888 Solo letras minúsculas y sin acentos</p>
+            </div>
+
+                <div class="input-botones">
+                    <button type="submit" class="encriptar-btn" onclick="encriptar()">Encriptar!</button>
+                    <button type="submit" class="desencriptar-btn" onclick="desencriptar()">Desencriptar!</button>
+                </div>
+        </section>
+
+        <section class="output-seccion">           
+            <div class="tarjeta-contenedor" id="mensaje-encriptado">
+                <img src="assets/Muñeco.png" alt="imagen descriptiva" id="imagen-output" class="img-muñeco">
+                <h2 id="titulo-mensaje">Ningun mensaje fue encontrado</h2>
+                <p id="parrafo">Ingresa el texto que desees encriptar o desencriptar</p>
+            </div>
+            <textarea  class="evaluar" name="mensaje" id="mensaje" cols="30" rows="10" class="mensaje" readonly></textarea>
+            <button class="copiar-btn" type="submit" onclick="copiar()">copiar</button>
+        </section>
+
+        <div id="alerta" class="alerta">Por favor, ingrese un texto para encriptar o desencriptar.</div>
+    </main>  
+    <footer> 
+        <p class="footer">&copy Desarrollado por Artur Andres Aroca Yara - Encriptador de texto</p>
+        <a href="https://github.com/ingArtur">
+            <img src="assets/github.png" alt="Logo github" class="github">
+        </a>
+        <a href="https://www.linkedin.com/in/artur-andr%C3%A9s-aroca-yara-565363272/">
+            <img src="assets/linkedin.png" alt="logo linkedin" class="linkedin">
+        </a>
+    </footer>
+</body>
+<script src="app.js"></script>
+</html>
