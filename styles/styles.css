@@ -11,7 +11,7 @@
     --color6:#495057;
     --RGBA:rgba(0,0,0,0.08);
     --fuente-montserrat: "Montserrat", sans-serif;
-    --fuente-krona-one: "Krona One", sans-serif; 
+    --fuente-krona-one: "Krona One", sans-serif;
 }
 
 * {
@@ -20,7 +20,7 @@
     box-sizing: border-box;
     font-family: var(--fuente-krona-one);
     text-decoration: none;
-    background-color: var(--Font)
+    background-color: var(--Font);
 }
 
 ::selection {
@@ -28,7 +28,7 @@
     color: var(--color);
 }
 body{
-    height: 100%;    
+    height: 100%;
 }
 img{
     max-width: 100%;
@@ -51,16 +51,21 @@ main {
     flex-direction: row;
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
+    padding-bottom: 40px;
 }
 
 .encriptar {
     width: 60%;
     margin: 168px 0 0 140px;
     background: transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 .textarea {
-    width: 960px;
+    width: 100%;
+    max-width: 960px;
     height: 488px;
     font-weight: 400;
     font-size: 32px;
@@ -82,8 +87,7 @@ main {
     align-items: center;
     padding: 0px;
     gap: 8px;
-    position: absolute;
-    top: 80%;
+    margin-top: 16px;
 }
 
 .info_text p {
@@ -102,8 +106,7 @@ main {
     flex-direction: row;
     align-items: flex-start;
     gap: 16px;
-    position: absolute;
-    top: 83%;
+    margin-top: 16px;
 }
 .encriptar-btn {
     width: 328px;
@@ -252,10 +255,8 @@ footer {
     border-top: 2px solid var(--color);
     color: var(--color5);
     text-align: center;
-    height: 5px;
     font-size: 20px;
     font-weight: 700;
-    color: var(--color5);
 }
 
 .linkedin:hover {
@@ -273,12 +274,13 @@ footer {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: red;
+    background-color: #dc3545;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     font-family: var(--fuente-montserrat);
     font-size: 1rem;
+    z-index: 1000;
 }
 
 @media(max-width: 1250px){
@@ -294,17 +296,15 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        width: 90%;
     }
 
     .input-botones {
         display: flex;
         align-items: center;
-        position: inherit;
     }
-    
+
     .info_text {
-        position:inherit;
         margin: 15px;
     }
 
@@ -313,9 +313,9 @@ footer {
        height: 300px;
        display: flex;
        justify-content: center;
-       align-items: center; 
+       align-items: center;
     }
-    
+
     .tarjeta-contenedor {
         display: block;
         justify-content: center;
@@ -349,7 +349,7 @@ footer {
     }
 
     .textarea {
-        width: 90%;
+        width: 100%;
         font-size: 24px;
     }
 

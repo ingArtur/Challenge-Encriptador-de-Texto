@@ -1,34 +1,36 @@
 const btnCopiar = document.querySelector(".copiar-btn");
-let textoEncriptadoCopiado = "";
+
+// Validar que solo contenga letras minúsculas sin acentos y espacios
+function validarTexto(texto) {
+    return /^[a-z\s]+$/.test(texto);
+}
 
 // Encriptar texto
 function encriptar() {
     let texto = document.getElementById("texto").value;
+    if (!texto) {
+        mostrarAlerta("Por favor, ingrese un texto para encriptar.");
+        return;
+    }
+    if (!validarTexto(texto)) {
+        mostrarAlerta("Solo se permiten letras minúsculas y sin acentos.");
+        return;
+    }
     let textoEncriptado = texto
         .replace(/e/g, "enter")
         .replace(/i/g, "imes")
         .replace(/a/g, "ai")
         .replace(/o/g, "ober")
         .replace(/u/g, "ufat");
-    if (!texto) {
-        mostrarAlerta();
-        return;
-    }
-    document.getElementById("mensaje-encriptado").style.display = "block";
-    document.getElementById("mensaje").value = textoEncriptado;
-    document.getElementById("titulo-mensaje").textContent = "";
-    document.getElementById("parrafo").textContent = "";
 
-    document.getElementById("imagen-output").style.display = "none";
-    document.getElementById("mensaje-encriptado").style.display = "flex";
-    btnCopiar.style.visibility = "inherit";
+    mostrarResultado(textoEncriptado);
 }
 
 // Desencriptar texto
 function desencriptar() {
     let texto = document.getElementById("texto").value;
-    if (texto !== textoEncriptadoCopiado) {
-        mostrarAlerta("Por favor, pegue el texto copiado para desencriptar.");
+    if (!texto) {
+        mostrarAlerta("Por favor, ingrese un texto para desencriptar.");
         return;
     }
     let textoDesencriptado = texto
@@ -37,51 +39,37 @@ function desencriptar() {
         .replace(/ai/g, "a")
         .replace(/ober/g, "o")
         .replace(/ufat/g, "u");
-    if (!texto) {
-        mostrarAlerta("Por favor, ingrese un texto.");
-        return;
-    }
 
-    document.getElementById("mensaje-encriptado").style.display = "block";
-    document.getElementById("mensaje").value = textoDesencriptado;
-    document.getElementById("titulo-mensaje").textContent = "";
-    document.getElementById("parrafo").textContent = "";
+    mostrarResultado(textoDesencriptado);
 }
 
-// Copiar texto encriptado
-function copiar() {
-    document.getElementById("texto").placeholder = "";
-    let textCopi = document.getElementById("mensaje");
-    textCopi.select();
-    document.execCommand("copy");
-    textoEncriptadoCopiado = textCopi.value; // Guardar el texto copiado
-    limpiar();
+// Mostrar resultado en el panel de salida
+function mostrarResultado(texto) {
+    document.getElementById("mensaje").value = texto;
+    document.getElementById("titulo-mensaje").textContent = "";
+    document.getElementById("parrafo").textContent = "";
+    document.getElementById("imagen-output").style.display = "none";
+    document.getElementById("mensaje-encriptado").style.display = "flex";
+    btnCopiar.style.visibility = "visible";
+}
 
-    foco();
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Texto copiado",
-        showConfirmButton: false,
-        timer: 1500,
+// Copiar texto al portapapeles
+function copiar() {
+    let textCopi = document.getElementById("mensaje");
+    navigator.clipboard.writeText(textCopi.value).then(() => {
+        document.getElementById("texto").value = "";
+        document.getElementById("texto").focus();
+        mostrarAlerta("Texto copiado al portapapeles.", "success");
     });
 }
 
 // Mostrar alerta personalizada
-function mostrarAlerta(mensaje = "Por favor, ingrese un texto.") {
+function mostrarAlerta(mensaje, tipo = "error") {
     let alerta = document.getElementById("alerta");
     alerta.textContent = mensaje;
+    alerta.style.backgroundColor = tipo === "success" ? "#28a745" : "#dc3545";
     alerta.style.display = "block";
     setTimeout(() => {
         alerta.style.display = "none";
     }, 3000);
-}
-
-// Funciones auxiliares
-function limpiar() {
-    document.getElementById("texto").value = "";
-}
-
-function foco() {
-    document.getElementById("texto").focus();
 }
